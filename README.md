@@ -1,58 +1,72 @@
-# create-svelte
+#  Svelte R&D demo project
+## :arrow_up: How to Setup
 
-Everything you need to build a Svelte library, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+**Step 1:** git clone this repository: `git clone [repo_url]`
 
-Read more about creating a library [in the docs](https://kit.svelte.dev/docs/packaging).
+**Step 2:** cd to the cloned repository: `SVELTEJS-DEMO`
 
-## Creating a project
+**Step 3:** Install the Application with `yarn install` or `npm install`
 
-If you're seeing this, you've probably already done this step. Congrats!
+## :arrow_forward: How to Run App
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
+1. cd to the repo
+2. Run & Build
+  * Run
+    * Run `yarn dev`
+    * View app on http://localhost:5173/
+  * Build
+    * Run `yarn build`
+    * View `dist` folder in the repository
+## :closed_lock_with_key: Secrets
 
-# create a new project in my-app
-npm create svelte@latest my-app
+API keys and other sensitive information are shared privately and stored in a .env.[environment] file.
+
+Example file: `.env.sample`
+```
+REACT_APP_API_URL=https://myapi.com
 ```
 
-## Developing
+and access them from React app like so:
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
+```
+process.env.REACT_APP_API_URL
 ```
 
-Everything inside `src/lib` is part of your library, everything inside `src/routes` can be used as a showcase or preview app.
+The `.env.[environment]` file is ignored by git keeping those secrets out of the repository.
 
-## Building
+### Technical stack
 
-To build your library:
+#### Languages
 
-```bash
-npm run package
-```
+**HTML5**
+Hypertext Markup Language revision 5 (HTML5) is a markup language for the structure and presentation of World Wide Web contents. HTML5 supports the traditional HTML and XHTML-style syntax and other new features in its markup, New APIs, XHTML and error handling.
 
-To create a production version of your showcase app:
+**CSS3**
+A cascading style sheet (CSS) is a Web page derived from multiple sources with a defined order of precedence where the definitions of any style element conflict.
 
-```bash
-npm run build
-```
+**SASS**
+- Sass (Syntactically Awesome Stylesheets) is a style sheet language.
+- Homepage: http://sass-lang.com
 
-You can preview the production build with `npm run preview`.
+**JavaScript**
+- An object-oriented computer programming language commonly used to create interactive effects within web browsers.
+- ECMAScript 2015 is an ECMAScript standard that was ratified in June 2015. ES2015 is a significant update to the language, and the first major update to the language since ES5 was standardized in 2009.
 
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+#### Tools & Libraries
 
-## Publishing
+**Svelte**
+- Svelte is a new way to build web applications. It's a compiler that takes your declarative components and converts them into efficient JavaScript that surgically updates the DOM.
 
-Go into the `package.json` and give your package the desired name through the `"name"` option. Also consider adding a `"license"` field and point it to a `LICENSE` file which you can create from a template (one popular option is the [MIT license](https://opensource.org/license/mit/)).
+**sveltestrap**
+- The philosophy of this library is to provide all Bootstrap 5 components for a Svelte app, without needing to use Bootstrap component classes or needing to include Bootstrap's JavaScript.
 
-To publish your library to [npm](https://www.npmjs.com):
+**svelte-stripe**
+- Stripe Elements to your Svelte & SvelteKit projects.
 
-```bash
-npm publish
-```
+**Husky**
+- Husky can prevent bad git commit, git push.
+- Homepage: https://github.com/typicode/husky
+
+**Prettier**
+- Prettier is an opinionated code formatter
+- Homepage: https://prettier.io
