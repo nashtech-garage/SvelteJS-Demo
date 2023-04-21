@@ -17,23 +17,7 @@
   * Build
     * Run `yarn build`
     * View `dist` folder in the repository
-## :closed_lock_with_key: Secrets
-
-API keys and other sensitive information are shared privately and stored in a .env.[environment] file.
-
-Example file: `.env.sample`
-```
-REACT_APP_API_URL=https://myapi.com
-```
-
-and access them from React app like so:
-
-```
-process.env.REACT_APP_API_URL
-```
-
-The `.env.[environment]` file is ignored by git keeping those secrets out of the repository.
-
+    
 ### Technical stack
 
 #### Languages
