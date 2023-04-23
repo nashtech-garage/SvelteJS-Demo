@@ -12,12 +12,13 @@
 
 1. cd to the repo
 2. Run & Build
-  * Run
-    * Run `yarn dev`
-    * View app on http://localhost:5173/
-  * Build
-    * Run `yarn build`
-    * View `dist` folder in the repository
+
+- Run
+  - Run `yarn dev`
+  - View app on http://localhost:5173/
+- Build
+  - Run `yarn build`
+  - View `dist` folder in the repository
 
 ### Technical stack
 
