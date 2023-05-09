@@ -1,10 +1,12 @@
 <script>
   // your script goes here
+  import Header from '$lib/Header.svelte'
+  import Footer from '$lib/Footer.svelte';
 </script>
 
-<div>Header</div>
+<Header />
 <slot />
-<div>Footer</div>
+<Footer />
 
 <style>
   /* your styles go here */
