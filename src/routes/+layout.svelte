@@ -1,8 +1,9 @@
 <script>
   // your script goes here
+  import Header from '../lib/Header.svelte';
 </script>
 
-<div>Header</div>
+<Header/>
 <slot />
 <div>Footer</div>
 
