@@ -1,13 +1,9 @@
 <script lang="ts">
-  import { browser } from '$app/environment';
-  import { afterUpdate, onMount } from 'svelte';
-  import FeaturedProductItem from './ProductItem.svelte';
-  import {
-    type TFeaturedProductItem,
-    ControlKeys,
-    FeaturedControls,
-    MixedTypesValues
-  } from '../../../types/featuredProduct';
+  import FeaturedProductItem from './ProductItem/ProductItem.svelte';
+  import { flip } from 'svelte/animate';
+  import { fade, scale } from 'svelte/transition';
+  import { type TFeaturedProductItem, ControlKeys } from '../../../types/featuredProduct';
+  import { featuredControls, mixedTypes } from '../../../constants/home';
 
   const itemGenerator = (number: number = 0): TFeaturedProductItem[] => {
     const newArray = new Array(number);
@@ -16,56 +12,29 @@
       return {
         image: `./images/FeaturedProducts/feature-${order}.jpg`,
         title: `${order}`,
-        price: 30
+        price: 30,
+        mixedTypes: mixedTypes[index]
       };
     });
   };
 
   /**
-   * Constants
-   */
-  const featuredControls = [
-    { key: ControlKeys.ALL, value: FeaturedControls[ControlKeys.ALL] },
-    { key: ControlKeys.ORANGES, value: FeaturedControls[ControlKeys.ORANGES] },
-    { key: ControlKeys.FRESH_MEAT, value: FeaturedControls[ControlKeys.FRESH_MEAT] },
-    { key: ControlKeys.VEGETABLES, value: FeaturedControls[ControlKeys.VEGETABLES] },
-    { key: ControlKeys.FAST_FOOD, value: FeaturedControls[ControlKeys.FAST_FOOD] }
-  ];
-  const mixedTypes = [
-    MixedTypesValues.ORANGES_MIX_FRESH_MEAT,
-    MixedTypesValues.VEGETABLES_MIX_FAST_FOOD,
-    MixedTypesValues.VEGETABLES_MIX_FRESH_MEAT,
-    MixedTypesValues.FAST_FOOD_MIX_ORANGES,
-    MixedTypesValues.FRESH_MEAT_MIX_VEGETABLES,
-    MixedTypesValues.ORANGES_MIX_FAST_FOOD,
-    MixedTypesValues.FRESH_MEAT_MIX_VEGETABLES,
-    MixedTypesValues.FAST_FOOD_MIX_VEGETABLES
-  ];
-
-  /**
    * Variables
    */
-  let mixer: any;
   let tab = ControlKeys.ALL;
   let featuredProductList: TFeaturedProductItem[] = itemGenerator(8);
-
+  let filterState = featuredProductList;
   const handleChangeTab = (selectedTab = ControlKeys.ALL): void => {
     tab = selectedTab;
   };
 
-  /**
-   * Lifecycle
-   */
-  onMount(() => {
-    if (browser) {
-      mixer = window.mixitup('.featured__filter');
+  $: {
+    if (tab === ControlKeys.ALL) {
+      filterState = featuredProductList;
+    } else {
+      filterState = featuredProductList.filter((item) => item.mixedTypes.indexOf(tab) > -1);
     }
-  });
-
-  afterUpdate(() => {
-    const dataFilter = `${tab !== '*' ? '.' : ''}${tab}`;
-    mixer.filter(dataFilter);
-  });
+  }
 </script>
 
 <section class="featured spad">
@@ -79,10 +48,10 @@
           <ul>
             {#each featuredControls as { key, value }}
               {#if key === tab}
-                <li class="active mixitup-control-active" data-filter="{key}">{value}</li>
+                <li class="active">{value}</li>
               {:else}
                 <!-- svelte-ignore a11y-click-events-have-key-events -->
-                <li data-filter=".{key}" class="" on:click="{() => handleChangeTab(key)}">
+                <li on:click="{() => handleChangeTab(key)}">
                   {value}
                 </li>
               {/if}
@@ -91,13 +60,64 @@
         </div>
       </div>
     </div>
-    <div class="row featured__filter" id="MixItUp" style="">
+    <div class="row featured__filter">
       <!-- 8 items/products -->
-      {#each mixedTypes as item, index}
-        <div class="col-lg-3 col-md-4 col-sm-6 {item}" style="">
-          <FeaturedProductItem itemData="{featuredProductList[index]}" />
+      {#each filterState as item (item.title)}
+        <div
+          in:scale
+          out:fade
+          animate:flip="{{ duration: 500 }}"
+          class="col-lg-3 col-md-4 col-sm-6"
+        >
+          <FeaturedProductItem itemData="{item}" />
         </div>
       {/each}
     </div>
   </div>
 </section>
+
+<style lang="scss">
+  .featured {
+    padding-top: 80px;
+    padding-bottom: 40px;
+  }
+
+  :global(.featured__controls) {
+    text-align: center;
+    margin-bottom: 50px;
+
+    ul {
+      li {
+        list-style: none;
+        font-size: 18px;
+        color: $normal-color;
+        display: inline-block;
+        margin-right: 25px;
+        position: relative;
+        cursor: pointer;
+
+        &.active {
+          &:after {
+            opacity: 1;
+          }
+        }
+
+        // Horizontal line
+        &:after {
+          position: absolute;
+          left: 0;
+          bottom: -2px;
+          width: 100%;
+          height: 2px;
+          background: $primary-color;
+          content: '';
+          opacity: 0;
+        }
+
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+    }
+  }
+</style>

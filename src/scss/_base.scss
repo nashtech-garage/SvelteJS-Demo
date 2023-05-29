@@ -1,0 +1,43 @@
+img {
+  max-width: 100%;
+}
+
+ul,
+ol {
+  padding: 0;
+  margin: 0;
+}
+
+.section-title {
+  margin-bottom: 50px;
+  text-align: center;
+
+  h2 {
+    color: $normal-color;
+    font-weight: 700;
+    position: relative;
+
+    &:after {
+      position: absolute;
+      left: 0;
+      bottom: -15px;
+      right: 0;
+      height: 4px;
+      width: 80px;
+      background: $primary-color;
+      content: '';
+      margin: 0 auto;
+    }
+  }
+}
+
+.set-bg {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top center;
+}
+
+.spad {
+  padding-top: 100px;
+  padding-bottom: 100px;
+}
