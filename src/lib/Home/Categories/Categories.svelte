@@ -1,7 +1,9 @@
 <script lang="ts">
-  import Carousel from 'svelte-carousel';
+  // import Carousel from 'svelte-carousel';
+  import Carousel from '../../Components/Carousel/Carousel.svelte';
+
   import { CategoryTypes } from '../../../types/categories';
-  import SlideItem from './SlideItem.svelte';
+  import SlideItem from './SlideItem/SlideItem.svelte';
   import { browser } from '$app/environment';
   const imageGenerator = (number: number = 0) => {
     const newArray = new Array(number);
@@ -32,34 +34,14 @@
     <div class="container">
       <div class="row">
         <div class="categories__slider">
-          <!-- 4x3 -->
-          <Carousel
-            let:showPrevPage
-            let:showNextPage
-            swiping="{true}"
-            infinite="{true}"
-            particlesToShow="{4}"
-            particlesToScroll="{1}"
-            dots="{false}"
-            pauseOnFocus="{true}"
-          >
-            <!-- svelte-ignore a11y-click-events-have-key-events -->
-            <div slot="prev" on:click="{showPrevPage}" class="custom-arrow custom-arrow-prev">
-              <button type="button" class="carousel-prev"
-                ><span class="fa fa-angle-left"><span></span></span></button
-              >
-            </div>
+          <Carousel autoplay="2000">
             {#each categoryList as data}
               <div class="col-lg-3 slide-item">
                 <SlideItem itemData="{data}" />
               </div>
             {/each}
-            <!-- svelte-ignore a11y-click-events-have-key-events -->
-            <div slot="next" on:click="{showNextPage}" class="custom-arrow custom-arrow-next">
-              <button type="button" class="carousel-next"
-                ><span class="fa fa-angle-right"><span></span></span></button
-              >
-            </div>
+            <span slot="left-control">Left</span>
+            <span slot="right-control">Right</span>
           </Carousel>
         </div>
       </div>
