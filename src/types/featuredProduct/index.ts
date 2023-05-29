@@ -2,6 +2,7 @@ export type TFeaturedProductItem = {
   image: string;
   title: string;
   price: number;
+  mixedTypes: string;
 };
 
 export enum ControlKeys {

@@ -7,13 +7,6 @@ declare global {
     // interface PageData {}
     // interface Platform {}
   }
-  interface Window {
-    /** Can not find out mixitup typescript for this lib
-     * Temporarily using any type
-     */
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    mixitup: any;
-  }
 }
 
 export {};
