@@ -1,6 +1,7 @@
 <script>
   export let itemData;
   let { image, title, price } = itemData;
+  console.log(image, 'check');
 </script>
 
 <div class="featured__item">
