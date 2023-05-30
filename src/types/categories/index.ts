@@ -5,3 +5,9 @@ export enum CategoryTypes {
   FRUIT_DRINK = 'Fruit Drinks',
   FRESH_MEAT = 'Fresh Meat'
 }
+
+export type TCategoryTitle = `${CategoryTypes}`;
+export type TCategoryItem = {
+  title: TCategoryTitle;
+  image: string;
+};

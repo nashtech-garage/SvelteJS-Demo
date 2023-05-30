@@ -1,4 +1,9 @@
 <script lang="ts">
+  import type { TCategoryItem } from '../../../../types/categories';
+
+  type $$Props = {
+    itemData: TCategoryItem;
+  };
   export let itemData;
   let { image, title } = itemData;
 </script>
@@ -33,6 +38,7 @@
         padding: 12px 0 10px;
         background: $white-color;
         display: block;
+        text-decoration: none;
       }
     }
   }

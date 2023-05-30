@@ -2,9 +2,23 @@
   import Siema from 'siema';
   import { onMount, createEventDispatcher } from 'svelte';
 
+  type $$Props = Partial<{
+    perPage: number;
+    loop: boolean;
+    autoplay: number;
+    duration: number;
+    easing: string;
+    startIndex: number;
+    draggable: boolean;
+    multipleDrag: boolean;
+    dots: boolean;
+    controls: boolean;
+    threshold: number;
+    rtl: boolean;
+  }>;
   export let perPage = 3;
   export let loop = true;
-  export let autoplay: any = 0;
+  export let autoplay = 0;
   export let duration = 200;
   export let easing = 'ease-out';
   export let startIndex = 0;
@@ -14,11 +28,12 @@
   export let controls = true;
   export let threshold = 20;
   export let rtl = false;
-  let currentIndex = startIndex;
 
-  let siema: any;
-  let controller: any;
-  let timer: any;
+  let currentIndex: number = startIndex;
+
+  let siema: HTMLDivElement;
+  let controller: Siema;
+  let timer: ReturnType<typeof setInterval> | undefined;
   const dispatch = createEventDispatcher();
 
   $: pips = controller ? controller.innerElements : [];
@@ -49,60 +64,60 @@
     };
   });
 
-  export function isDotActive(currentIndex: any, dotIndex: any) {
+  const isDotActive = (currentIndex: number, dotIndex: number): boolean => {
     if (currentIndex < 0) currentIndex = pips.length + currentIndex;
     return (
       currentIndex >= dotIndex * currentPerPage &&
       currentIndex < dotIndex * currentPerPage + currentPerPage
     );
-  }
+  };
 
-  export function left() {
+  const left = (): void => {
     controller.prev();
-  }
+  };
 
-  export function right() {
+  const right = (): void => {
     controller.next();
-  }
+  };
 
-  export function go(index: any) {
+  const go = (index: number): void => {
     controller.goTo(index);
-  }
+  };
 
-  export function pause() {
+  const pause = (): void => {
     clearInterval(timer);
-  }
+  };
 
-  export function resume() {
+  const resume = (): void => {
     if (autoplay) {
       timer = setInterval(right, autoplay);
     }
-  }
+  };
 
-  function handleChange() {
+  const handleChange = (): void => {
     currentIndex = controller.currentSlide;
     dispatch('change', {
       currentSlide: controller.currentSlide,
       slideCount: controller.innerElements.length
     });
-  }
+  };
 
-  function resetInterval(node: any, condition: any) {
-    function handleReset(event: any) {
+  const resetInterval = (node: HTMLElement, condition: string): { destroy: () => void } => {
+    const handleReset = (): void => {
       pause();
       resume();
-    }
+    };
 
     if (condition) {
       node.addEventListener('click', handleReset);
     }
 
     return {
-      destroy() {
+      destroy(): void {
         node.removeEventListener('click', handleReset);
       }
     };
-  }
+  };
 </script>
 
 <div class="carousel">
@@ -110,16 +125,22 @@
     <slot />
   </div>
   {#if controls}
-    <button class="left" on:click="{left}" use:resetInterval="{autoplay}" aria-label="left">
-      <slot name="left-control" />
+    <button class="left" on:click="{left}" use:resetInterval="{String(autoplay)}" aria-label="left">
+      <i class="fa fa-angle-left"></i>
     </button>
-    <button class="right" on:click="{right}" use:resetInterval="{autoplay}" aria-label="right">
-      <slot name="right-control" />
+    <button
+      class="right"
+      on:click="{right}"
+      use:resetInterval="{String(autoplay)}"
+      aria-label="right"
+    >
+      <i class="fa fa-angle-right"></i>
     </button>
   {/if}
   {#if dots}
     <ul>
       {#each { length: totalDots } as _, i}
+        <!-- svelte-ignore a11y-click-events-have-key-events -->
         <li
           on:click="{() => go(i * currentPerPage)}"
           class="{isDotActive(currentIndex, i) ? 'active' : ''}"
@@ -129,55 +150,54 @@
   {/if}
 </div>
 
-<style>
+<style lang="scss" global>
   .carousel {
     position: relative;
     width: 100%;
     justify-content: center;
     align-items: center;
-  }
+    ul {
+      list-style-type: none;
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      margin-top: -30px;
+      padding: 0;
+      li {
+        margin: 6px;
+        border-radius: 100%;
+        background-color: rgba(255, 255, 255, 0.5);
+        height: 8px;
+        width: 8px;
+      }
+    }
+    button {
+      position: absolute;
+      font-size: 18px;
+      color: #1c1c1c;
+      height: 70px;
+      width: 30px;
+      line-height: 70px;
+      text-align: center;
+      border: 1px solid #ebebeb;
+      position: absolute;
+      left: -35px;
+      top: 50%;
+      transform: translateY(-35px);
+      background: #ffffff;
+      &:focus {
+        outline: none;
+      }
+    }
 
-  button {
-    position: absolute;
-    width: 40px;
-    height: 40px;
-    top: 50%;
-    z-index: 50;
-    margin-top: -20px;
-    border: none;
-    background-color: transparent;
-  }
-  button:focus {
-    outline: none;
-  }
+    .left {
+      font-size: 18px;
+    }
 
-  .left {
-    left: 2vw;
-  }
-
-  .right {
-    right: 2vw;
-  }
-  ul {
-    list-style-type: none;
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    margin-top: -30px;
-    padding: 0;
-  }
-  ul li {
-    margin: 6px;
-    border-radius: 100%;
-    background-color: rgba(255, 255, 255, 0.5);
-    height: 8px;
-    width: 8px;
-  }
-  ul li:hover {
-    background-color: rgba(255, 255, 255, 0.85);
-  }
-  ul li.active {
-    background-color: rgba(255, 255, 255, 1);
+    .right {
+      left: auto;
+      right: -35px;
+    }
   }
 </style>

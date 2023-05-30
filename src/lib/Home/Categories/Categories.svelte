@@ -1,11 +1,14 @@
 <script lang="ts">
-  // import Carousel from 'svelte-carousel';
   import Carousel from '../../Components/Carousel/Carousel.svelte';
-
-  import { CategoryTypes } from '../../../types/categories';
+  import {
+    CategoryTypes,
+    type TCategoryItem,
+    type TCategoryTitle
+  } from '../../../types/categories';
   import SlideItem from './SlideItem/SlideItem.svelte';
   import { browser } from '$app/environment';
-  const imageGenerator = (number: number = 0) => {
+
+  const imageGenerator = (number: number = 0): { [x: string]: string }[] => {
     const newArray = new Array(number);
     return [...newArray].map((_, index) => {
       const order = index + 1;
@@ -14,14 +17,15 @@
       };
     });
   };
+
   const categoryImages = imageGenerator(5);
-  const categoryList = [
+  const categoryList: TCategoryItem[] = [
     CategoryTypes.FRESH_FRUIT,
     CategoryTypes.DRIED_FRUIT,
     CategoryTypes.VEGETABLES,
     CategoryTypes.FRUIT_DRINK,
     CategoryTypes.FRESH_MEAT
-  ].map((item, index) => {
+  ].map((item: TCategoryTitle, index: number) => {
     return {
       title: item,
       image: categoryImages[index].image
@@ -34,14 +38,12 @@
     <div class="container">
       <div class="row">
         <div class="categories__slider">
-          <Carousel autoplay="2000">
+          <Carousel autoplay="{5000}" perPage="{4}">
             {#each categoryList as data}
               <div class="col-lg-3 slide-item">
                 <SlideItem itemData="{data}" />
               </div>
             {/each}
-            <span slot="left-control">Left</span>
-            <span slot="right-control">Right</span>
           </Carousel>
         </div>
       </div>
@@ -49,30 +51,14 @@
   {/if}
 </section>
 
-<style>
-  /* .slide-item {
-    min-width: 292.5px;
-    max-width: 292.5px;
-  } */
-  .categories__slider button {
-    font-size: 18px;
-    color: #1c1c1c;
-    height: 70px;
-    width: 30px;
-    line-height: 70px;
-    text-align: center;
-    border: 1px solid #ebebeb;
-    position: absolute;
-    left: -35px;
-    top: 50%;
-    transform: translateY(-35px);
-    background: #ffffff;
-  }
-  .categories__slider .carousel-prev {
-    font-size: 18px;
-  }
-  .categories__slider .carousel-next {
-    left: auto;
-    right: -35px;
+<style lang="scss" global>
+  .categories__slider {
+    padding: 0px;
+    .slide-item {
+      max-width: 100%;
+      width: 100%;
+      padding-right: 15px;
+      padding-left: 15px;
+    }
   }
 </style>
