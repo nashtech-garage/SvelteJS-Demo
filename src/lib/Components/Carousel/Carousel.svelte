@@ -150,7 +150,7 @@
   {/if}
 </div>
 
-<style lang="scss" global>
+<style lang="scss">
   .carousel {
     position: relative;
     width: 100%;
