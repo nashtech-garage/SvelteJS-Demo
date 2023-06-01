@@ -1,10 +1,6 @@
 <script lang="ts">
   import Carousel from '../../Components/Carousel/Carousel.svelte';
-  import {
-    CategoryTypes,
-    type TCategoryItem,
-    type TCategoryTitle
-  } from '../../../types/categories';
+  import { CategoryTypes, type TCategoryItem, type TCategoryTitle } from '../../../types/home';
   import SlideItem from './SlideItem/SlideItem.svelte';
   import { browser } from '$app/environment';
 

@@ -2,7 +2,7 @@
   import FeaturedProductItem from './ProductItem/ProductItem.svelte';
   import { flip } from 'svelte/animate';
   import { fade, scale } from 'svelte/transition';
-  import { type TFeaturedProductItem, ControlKeys } from '../../../types/featuredProduct';
+  import { type TFeaturedProductItem, ControlKeys } from '../../../types/home';
   import { featuredControls, mixedTypes } from '../../../constants/home';
 
   const itemGenerator = (number: number = 0): TFeaturedProductItem[] => {

@@ -1,4 +1,4 @@
-import { ControlKeys, FeaturedControls, MixedTypesValues } from '../types/featuredProduct';
+import { ControlKeys, FeaturedControls, MixedTypesValues, GroupProductValues } from '../types/home';
 
 export const featuredControls = [
   { key: ControlKeys.ALL, value: FeaturedControls[ControlKeys.ALL] },
@@ -16,4 +16,10 @@ export const mixedTypes = [
   MixedTypesValues.ORANGES_MIX_FAST_FOOD,
   MixedTypesValues.FRESH_MEAT_MIX_VEGETABLES,
   MixedTypesValues.FAST_FOOD_MIX_VEGETABLES
+];
+
+export const GroupLatestProducts = [
+  GroupProductValues.LATEST_PRODUCTS,
+  GroupProductValues.TOP_RATED_PRODUCTS,
+  GroupProductValues.REVIEW_PRODUCTS
 ];

@@ -54,7 +54,9 @@
       rtl,
       onChange: handleChange
     });
-
+    dispatch('useController', {
+      controller: controller
+    });
     if (autoplay) {
       timer = setInterval(right, autoplay);
     }

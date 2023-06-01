@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { TCategoryItem } from '../../../../types/categories';
+  import type { TCategoryItem } from '../../../../types/home';
 
   type $$Props = {
     itemData: TCategoryItem;

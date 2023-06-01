@@ -8,9 +8,9 @@
 <h1>Main content</h1>
 <p>name: {data.name}</p>
 <p>email: {data.email}</p>
-<GroupProducts />
 <Categories />
 <FeaturedProducts />
+<GroupProducts />
 
 <style lang="scss">
   h1 {
