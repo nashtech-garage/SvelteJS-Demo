@@ -82,7 +82,7 @@
     padding-bottom: 40px;
   }
 
-  :global(.featured__controls) {
+  .featured__controls {
     text-align: center;
     margin-bottom: 50px;
 

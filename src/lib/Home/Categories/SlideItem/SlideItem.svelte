@@ -17,7 +17,7 @@
 </div>
 
 <style lang="scss">
-  :global(.categories__item) {
+  .categories__item {
     height: 270px;
     position: relative;
 

@@ -51,7 +51,7 @@
   {/if}
 </section>
 
-<style lang="scss" global>
+<style lang="scss">
   .categories__slider {
     padding: 0px;
     .slide-item {
