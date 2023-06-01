@@ -22,7 +22,7 @@
 </div>
 
 <style lang="scss">
-  :global(.featured__item) {
+  .featured__item {
     margin-bottom: 50px;
 
     &:hover {
@@ -34,14 +34,14 @@
     }
   }
 
-  :global(.featured__item__pic) {
+  .featured__item__pic {
     height: 270px;
     position: relative;
     overflow: hidden;
     background-position: center center;
   }
 
-  :global(.featured__item__pic__hover) {
+  .featured__item__pic__hover {
     position: absolute;
     left: 0;
     bottom: -50px;
@@ -91,7 +91,7 @@
     }
   }
 
-  :global(.featured__item__text) {
+  .featured__item__text {
     text-align: center;
     padding-top: 15px;
 
