@@ -1,100 +1,72 @@
 <script>
+	  export const ssr = true;
+import { browser, dev, building, version } from '$app/environment';
+
 	import { Col, Container, Row } from 'sveltestrap';
 	import { Table } from 'sveltestrap';
+	// import { count } from "$lib/stores"
+	export let wishlist;
+// 	function increment() {
+// 		count.update((n) => n + 1);
+// 	}
+
+// 	if (browser) {
+//   console.log('wishlist')
+
+// }
 </script>
 
+<!-- <h1>{$count}</h1> -->
+<!-- <button on:click={increment}>Add more</button> -->
 <section class="shoping-cart spad">
 	<div class="container">
-			<Row>
-					<Col>
-						<div class="shoping__cart__table">
-							<Table>
-								<thead>
-										<tr>
-												<th class="shoping__product">Products</th>
-												<th>Price</th>
-												<th>Quantity</th>
-												<th>Total</th>
-												<th></th>
-										</tr>
-								</thead>
-								<tbody>
-										<tr>
-												<td class="shoping__cart__item">
-														<img src="img/cart/cart-1.jpg" alt="">
-														<h5>Vegetable’s Package</h5>
-												</td>
-												<td class="shoping__cart__price">
-														$55.00
-												</td>
-												<!-- *** -->
-												<td class="shoping__cart__quantity">
-														<div class="quantity">
-																<div class="pro-qty">
-																		<input type="text" value="1">
-																</div>
-														</div>
-												</td>
-												<td class="shoping__cart__total">
-														$110.00
-												</td>
-												<td class="shoping__cart__item__close">
-														<span class="icon_close"></span>
-												</td>
-										</tr>
-										<tr>
-												<td class="shoping__cart__item">
-														<img src="img/cart/cart-2.jpg" alt="">
-														<h5>Fresh Garden Vegetable</h5>
-												</td>
-												<td class="shoping__cart__price">
-														$39.00
-												</td>
-												<!-- *** -->
-												<td class="shoping__cart__quantity">
-														<div class="quantity">
-																<div class="pro-qty">
-																		<input type="text" value="1">
-																</div>
-														</div>
-												</td>
-												<td class="shoping__cart__total">
-														$39.99
-												</td>
-												<td class="shoping__cart__item__close">
-														<span class="icon_close"></span>
-												</td>
-										</tr>
-										<tr>
-												<td class="shoping__cart__item">
-														<img src="img/cart/cart-3.jpg" alt="">
-														<h5>Organic Bananas</h5>
-												</td>
-												<td class="shoping__cart__price">
-														$69.00
-												</td>
-												<!-- *** -->
-												<td class="shoping__cart__quantity">
-														<div class="quantity">
-																<div class="pro-qty">
-																		<input type="text" value="1">
-																</div>
-														</div>
-												</td>
-												<td class="shoping__cart__total">
-														$69.99
-												</td>
-												<td class="shoping__cart__item__close">
-														<span class="icon_close"></span>
-												</td>
-										</tr>
-								</tbody>
-						</Table>
-						</div>
-					</Col>
-			</Row>
+		<Row>
+			<Col>
+				<div class="shoping__cart__table">
+					<Table>
+						<thead>
+							<tr>
+									<th class="shoping__product">Products</th>
+									<th>Price</th>
+									<th>Quantity</th>
+									<th>Total</th>
+									<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							{#each wishlist as item}
+							<tr>
+									<td class="shoping__cart__item">
+											<img src={item.imgPath} alt="">
+											<h5>{item.title}</h5>
+									</td>
+									<td class="shoping__cart__price">
+											${item.price}
+									</td>
+									<!-- *** -->
+									<td class="shoping__cart__quantity">
+											<div class="quantity">
+													<div class="pro-qty">
+															<input type="text" value="1">
+													</div>
+											</div>
+									</td>
+									<td class="shoping__cart__total">
+											${item.price * item.quantity}
+									</td>
+									<td class="shoping__cart__item__close">
+											<span class="icon_close"></span>
+									</td>
+							</tr>
+								{/each}
+						</tbody>
+				</Table>
+				</div>
+			</Col>
+		</Row>
 	</div>
 </section>
+
 <style lang="scss">
 	/* Shop Cart */
 .shoping-cart {
