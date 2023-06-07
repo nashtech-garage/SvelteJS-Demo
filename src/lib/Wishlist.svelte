@@ -1,6 +1,7 @@
 <script>
-	export const ssr = true;
+	// export const ssr = true;
 import { browser, dev, building, version } from '$app/environment';
+import { onMount } from 'svelte';
 
 import { Col, Container, Row } from 'sveltestrap';
 import { Table } from 'sveltestrap';
@@ -14,6 +15,10 @@ export let wishlist;
 //   console.log('wishlist')
 
 // }
+
+onMount(() => {
+  wishlist = JSON.parse(localStorage.getItem('wishlist'))
+	});
 </script>
 
 <!-- <h1>{$count}</h1> -->

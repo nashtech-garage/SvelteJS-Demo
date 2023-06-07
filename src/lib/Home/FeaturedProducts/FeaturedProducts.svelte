@@ -1,33 +1,46 @@
 <script lang="ts">
+	// export const ssr = false;
+
+    import { onMount } from 'svelte';
+
   import FeaturedProductItem from './ProductItem/ProductItem.svelte';
   import { flip } from 'svelte/animate';
   import { fade, scale } from 'svelte/transition';
   import { type TFeaturedProductItem, ControlKeys } from '../../../types/home';
   import { featuredControls, mixedTypes } from '../../../constants/home';
   import itemGenerator from './ItemData';
-  // const itemGenerator = (number: number = 0): TFeaturedProductItem[] => {
-  //   const newArray = new Array(number);
-  //   return [...newArray].map((_, index) => {
-  //     const order = index + 1;
-  //     return {
-  //       id: crypto.randomUUID(),
-  //       image: `./images/FeaturedProducts/feature-${order}.jpg`,
-  //       title: `${order}`,
-  //       price: 30,
-  //       mixedTypes: mixedTypes[index]
-  //     };
-  //   });
-  // };
+  
+  onMount(() => {
+    wishlist = JSON.parse(localStorage.getItem('wishlist'))
+    if (!wishlist?.length) {
+      wishlist = []
+    }
 
-  /**
-   * Variables
-   */
+	});
+  //  setContext('wishlist', {
+	// 	wishlist: 
+	// });
+  function handleAddToCart(id) {
+    const foundIdx = wishlist.findIndex(w => w.id === id)
+    if (foundIdx > -1) {
+      wishlist[foundIdx].quantity++
+    } else {
+      wishlist.push(
+        {
+          id,
+          quantity: 1,
+      })
+    }
+    wishlist = wishlist
+    localStorage.setItem('wishlist', JSON.stringify(wishlist))
+  }
   let tab = ControlKeys.ALL;
   let featuredProductList: TFeaturedProductItem[] = itemGenerator(8);
   let filterState = featuredProductList;
   const handleChangeTab = (selectedTab = ControlKeys.ALL): void => {
     tab = selectedTab;
   };
+  $: wishlist = []
 
   $: {
     if (tab === ControlKeys.ALL) {
@@ -70,7 +83,10 @@
           animate:flip="{{ duration: 500 }}"
           class="col-lg-3 col-md-4 col-sm-6"
         >
-          <FeaturedProductItem itemData="{item}" />
+          <FeaturedProductItem 
+            itemData={item} 
+            addToCart={handleAddToCart}
+          />
         </div>
       {/each}
     </div>

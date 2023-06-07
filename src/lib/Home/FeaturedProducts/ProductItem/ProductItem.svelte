@@ -2,13 +2,10 @@
   import Wishlist from "$lib/Wishlist.svelte";
 
   export let itemData;
+  export let addToCart;
   let { image, title, price, id } = itemData;
-  $: wishlist = []
-  function addToCart(item) {
-    wishlist.push(id)
-    wishlist = wishlist
-    localStorage.setItem('wishlist', JSON.stringify(wishlist))
-  }
+  // $: wishlist = []
+  
 </script>
 
 <div class="featured__item">
@@ -20,7 +17,7 @@
     <ul class="featured__item__pic__hover">
       <li><a href="/"><i class="fa fa-heart"></i></a></li>
       <li><a href="/"><i class="fa fa-retweet"></i></a></li>
-      <li on:click={(id) => addToCart(id)}><a href="/"><i class="fa fa-shopping-cart"></i></a></li>
+      <li on:click={() => addToCart(id)}><a href="/"><i class="fa fa-shopping-cart"></i></a></li>
     </ul>
   </div>
   <div class="featured__item__text">
