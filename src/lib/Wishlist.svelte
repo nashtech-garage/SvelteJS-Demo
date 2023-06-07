@@ -8,26 +8,31 @@ import { Table } from 'sveltestrap';
 // import { count } from "$lib/stores"
 export let wishlist;
 $: modifiedWishlist = [...wishlist];
-	function increment(id) {
-		const foundIdx = modifiedWishlist.findIndex(item => item.id === id);
-		if (foundIdx > -1) {
-			modifiedWishlist[foundIdx].quantity++
-			// modifiedWishlist = modifiedWishlist
-			localStorage.setItem('wishlist', JSON.stringify(modifiedWishlist))
+function increment(id) {
+	const foundIdx = modifiedWishlist.findIndex(item => item.id === id);
+	if (foundIdx > -1) {
+		modifiedWishlist[foundIdx].quantity++
+		localStorage.setItem('wishlist', JSON.stringify(modifiedWishlist))
 
-		}
 	}
-	function decrement(id) {
-		const foundIdx = modifiedWishlist.findIndex(item => item.id === id);
-		if (foundIdx > -1) {
-			modifiedWishlist[foundIdx].quantity = modifiedWishlist[foundIdx].quantity 
-			? modifiedWishlist[foundIdx].quantity - 1 
-			: 0
-			localStorage.setItem('wishlist', JSON.stringify(modifiedWishlist))
+}
 
-			// modifiedWishlist = modifiedWishlist
-		}
+function decrement(id) {
+	const foundIdx = modifiedWishlist.findIndex(item => item.id === id);
+	if (foundIdx > -1) {
+		modifiedWishlist[foundIdx].quantity = modifiedWishlist[foundIdx].quantity 
+		? modifiedWishlist[foundIdx].quantity - 1 
+		: 0
+		localStorage.setItem('wishlist', JSON.stringify(modifiedWishlist))
+
+		// modifiedWishlist = modifiedWishlist
 	}
+}
+
+function remove(id) {
+	modifiedWishlist = modifiedWishlist.filter(w => w.id !== id);
+	localStorage.setItem('wishlist', JSON.stringify(modifiedWishlist))
+}
 
 // 	if (browser) {
 //   console.log('wishlist')
@@ -68,9 +73,9 @@ $: modifiedWishlist = [...wishlist];
 								<td class="shoping__cart__quantity">
 										<div class="quantity">
 												<div class="pro-qty">
-													<span on:click={() => increment(item.id)} class="inc qtybtn">+</span>
-														<input type="text" value={item.quantity}>
 													<span on:click={() => decrement(item.id)} class="dec qtybtn">-</span>
+													<input type="text" value={item.quantity}>
+													<span on:click={() => increment(item.id)} class="inc qtybtn">+</span>
 
 												</div>
 										</div>
@@ -79,7 +84,7 @@ $: modifiedWishlist = [...wishlist];
 										${item.price * item.quantity}
 								</td>
 								<td class="shoping__cart__item__close">
-										<span class="icon_close"></span>
+										<span on:click={() => remove(item.id)} class="icon_close"></span>
 								</td>
 						</tr>
 							{/each}
@@ -138,6 +143,7 @@ $: modifiedWishlist = [...wishlist];
 											img {
 													display: inline-block;
 													margin-right: 25px;
+													width: 100px;
 											}
 
 											h5 {
@@ -176,6 +182,30 @@ $: modifiedWishlist = [...wishlist];
 											.pro-qty {
 													width: 120px;
 													height: 40px;
+													display: inline-block;
+    position: relative;
+    text-align: center;
+    background: $background;
+    margin-bottom: 5px;
+
+    input {
+        height: 100%;
+        width: 100%;
+        font-size: 16px;
+        color: $para-color;
+        width: 50px;
+        border: none;
+        background: $background;
+        text-align: center;
+    }
+
+    .qtybtn {
+        width: 35px;
+        font-size: 16px;
+        color: $para-color;
+        cursor: pointer;
+        display: inline-block;
+    }
 
 													input {
 															color: $normal-color;
