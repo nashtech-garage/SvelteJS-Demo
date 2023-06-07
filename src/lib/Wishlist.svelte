@@ -1,10 +1,10 @@
 <script>
 	// export const ssr = true;
 import { browser, dev, building, version } from '$app/environment';
-import { onMount } from 'svelte';
 
 import { Col, Container, Row } from 'sveltestrap';
 import { Table } from 'sveltestrap';
+
 // import { count } from "$lib/stores"
 export let wishlist;
 // 	function increment() {
@@ -16,10 +16,8 @@ export let wishlist;
 
 // }
 
-onMount(() => {
-  wishlist = JSON.parse(localStorage.getItem('wishlist'))
-	});
 </script>
+
 
 <!-- <h1>{$count}</h1> -->
 <!-- <button on:click={increment}>Add more</button> -->
@@ -42,7 +40,7 @@ onMount(() => {
 						{#each wishlist as item}
 						<tr>
 								<td class="shoping__cart__item">
-										<img src={item.imgPath} alt="">
+										<img src={item.image} alt="">
 										<h5>{item.title}</h5>
 								</td>
 								<td class="shoping__cart__price">
