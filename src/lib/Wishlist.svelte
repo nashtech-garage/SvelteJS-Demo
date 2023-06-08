@@ -94,118 +94,115 @@
 	
 	.shoping__cart__table {
 		margin-bottom: 30px;
-				width: 100%;
-				text-align: center;
+		width: 100%;
+		text-align: center;
 	
-				thead {
-	
-						tr {
-								border-bottom: 1px solid $border;
-						}
-	
-						th {
-								font-size: 20px;
-								font-weight: 700;
-								color: $normal-color;
-								padding-bottom: 20px;
-	
-								&.shoping__product {
-										text-align: left;
-								}
-						}
-				}
-	
+		thead {
+			tr {
+					border-bottom: 1px solid $border;
+			}
+
+			th {
+					font-size: 20px;
+					font-weight: 700;
+					color: $normal-color;
+					padding-bottom: 20px;
+
+					&.shoping__product {
+							text-align: left;
+					}
+			}
+		}
+
 				tbody {
+					tr {
+						td {
+							padding-top: 30px;
+							padding-bottom: 30px;
+							border-bottom: 1px solid $border;
+
+							&.shoping__cart__item {
+									width: 630px;
+									text-align: left;
+
+									img {
+											display: inline-block;
+											margin-right: 25px;
+											width: 100px;
+									}
+
+									h5 {
+											color: $normal-color;
+											display: inline-block;
+									}
+							}
+
+							&.shoping__cart__price {
+									font-size: 18px;
+									color: $normal-color;
+									font-weight: 700;
+									width: 100px;
+							}
+
+							&.shoping__cart__total {
+									font-size: 18px;
+									color: $normal-color;
+									font-weight: 700;
+									width: 110px;
+							}
+
+							&.shoping__cart__item__close {
+									text-align: right;
+
+									span {
+											font-size: 24px;
+											color: #b2b2b2;
+											cursor: pointer;
+									}
+							}
+
+							&.shoping__cart__quantity {
+									width: 225px;
+
+									.pro-qty {
+											width: 120px;
+											height: 40px;
+											display: inline-block;
+											position: relative;
+											text-align: center;
+											background: $background;
+											margin-bottom: 5px;
+				
+											input {
+												height: 100%;
+												width: 100%;
+												font-size: 16px;
+												color: $para-color;
+												width: 50px;
+												border: none;
+												background: $background;
+												text-align: center;
+											}
+			
+					.qtybtn {
+							width: 35px;
+							font-size: 16px;
+							color: $para-color;
+							cursor: pointer;
+							display: inline-block;
+					}
 	
-						tr {
-	
-								td {
-										padding-top: 30px;
-										padding-bottom: 30px;
-										border-bottom: 1px solid $border;
-	
-										&.shoping__cart__item {
-												width: 630px;
-												text-align: left;
-	
-												img {
-														display: inline-block;
-														margin-right: 25px;
-														width: 100px;
-												}
-	
-												h5 {
-														color: $normal-color;
-														display: inline-block;
-												}
-										}
-	
-										&.shoping__cart__price {
-												font-size: 18px;
-												color: $normal-color;
-												font-weight: 700;
-												width: 100px;
-										}
-	
-										&.shoping__cart__total {
-												font-size: 18px;
-												color: $normal-color;
-												font-weight: 700;
-												width: 110px;
-										}
-	
-										&.shoping__cart__item__close {
-												text-align: right;
-	
-												span {
-														font-size: 24px;
-														color: #b2b2b2;
-														cursor: pointer;
-												}
-										}
-	
-										&.shoping__cart__quantity {
-												width: 225px;
-	
-												.pro-qty {
-														width: 120px;
-														height: 40px;
-														display: inline-block;
-			position: relative;
-			text-align: center;
-			background: $background;
-			margin-bottom: 5px;
-	
-			input {
-					height: 100%;
-					width: 100%;
-					font-size: 16px;
-					color: $para-color;
-					width: 50px;
-					border: none;
-					background: $background;
-					text-align: center;
-			}
-	
-			.qtybtn {
-					width: 35px;
-					font-size: 16px;
-					color: $para-color;
-					cursor: pointer;
-					display: inline-block;
-			}
-	
-														input {
-																color: $normal-color;
-	
-																&::placeholder {
-																		color: $normal-color;
-																}
-														}
-	
-														.qtybtn {
-																width: 15px;
-														}
+					input {
+							color: $normal-color;
+
+							&::placeholder {
+									color: $normal-color;
+							}
+					}
+
+					.qtybtn {
+							width: 15px;
+					}
 												}
 										}
 								}
