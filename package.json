@@ -58,7 +58,6 @@
   "dependencies": {
     "@types/siema": "^1.4.8",
     "husky": "^8.0.3",
-    "siema": "^1.5.1",
-    "uuidv4": "^6.2.13"
+    "siema": "^1.5.1"
   }
 }
