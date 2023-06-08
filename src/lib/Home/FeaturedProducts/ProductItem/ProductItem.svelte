@@ -1,10 +1,7 @@
 <script>
-  import Wishlist from "$lib/Wishlist.svelte";
-
   export let itemData;
   export let addToCart;
   let { image, title, price, id } = itemData;
-  // $: wishlist = []
   
 </script>
 

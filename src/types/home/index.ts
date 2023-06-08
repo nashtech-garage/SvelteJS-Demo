@@ -16,6 +16,7 @@ export type TCategoryItem = {
  * Featured Products types
  */
 export type TFeaturedProductItem = {
+  id: string,
   image: string;
   title: string;
   price: number;
@@ -58,3 +59,8 @@ export enum GroupProductValues {
 }
 
 export type TGroupProductItem = Omit<TFeaturedProductItem, 'mixedTypes'>;
+
+export type TWishlistStorage = {
+  id: string,
+  quantity: number
+}
