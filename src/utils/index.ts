@@ -1,3 +1,5 @@
+import { onDestroy } from 'svelte';
+
 export const exFuntion = () => {
   return '';
 };
@@ -10,3 +12,9 @@ export function sliceIntoChunks<T>(arr: T[], chunkSize: number): Array<Array<T>>
   }
   return res;
 }
+
+export const onInterval = (cb: () => void, timer: number) => {
+  const interval = setInterval(cb, timer);
+
+  onDestroy(() => clearInterval(interval));
+};
