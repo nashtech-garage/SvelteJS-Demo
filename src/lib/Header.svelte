@@ -1,4 +1,17 @@
 <script>
+  import CartIcon from './Components/CartIcon/CartIcon.svelte';
+  const Icons = [
+    {
+      href: '#',
+      iconName: 'fa fa-heart',
+      numberOfNoti: 1
+    },
+    {
+      href: '#',
+      iconName: 'fa fa-shopping-bag',
+      numberOfNoti: 3
+    }
+  ];
 </script>
 
 <header class="header">
@@ -70,8 +83,9 @@
       <div class="col-lg-3">
         <div class="header__cart">
           <ul>
-            <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-            <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+            {#each Icons as icon}
+              <li><CartIcon {...icon} /></li>
+            {/each}
           </ul>
           <div class="header__cart__price"><span>$10.00</span></div>
         </div>
