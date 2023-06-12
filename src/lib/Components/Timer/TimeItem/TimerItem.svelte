@@ -1,19 +1,18 @@
 <script lang="ts">
-  import { onInterval } from '../../../../utils';
-  export let callback: () => void;
   export let number: number;
-
-  $: numbers = number;
-
-  onInterval(callback, 1000);
+  $: formatNumber = number.toLocaleString('en-US', { minimumIntegerDigits: 2 });
 </script>
 
 <div class="container">
-  <p>{numbers}</p>
+  <span>{formatNumber}</span>
 </div>
 
 <style scoped>
   .container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
     border-radius: 2px;
     font-weight: 500;
     margin: 12px 6px;
