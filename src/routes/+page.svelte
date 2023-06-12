@@ -2,12 +2,17 @@
   import GroupProducts from '../lib/Home/GroupProducts/GroupProducts.svelte';
   import FeaturedProducts from '../lib/Home/FeaturedProducts/FeaturedProducts.svelte';
   import Categories from '../lib/Home/Categories/Categories.svelte';
-  import Banner from "../lib/Banner.svelte";
-
+  import Banner from '../lib/Banner.svelte';
+  import Timer from '../lib/Components/Timer/Timer.svelte';
   export let data;
 </script>
 
-<Banner/>
+<Banner />
+
+<h1>Main content</h1>
+<p>name: {data.name}</p>
+<p>email: {data.email}</p>
+<Timer />
 <Categories />
 <FeaturedProducts />
 <GroupProducts />

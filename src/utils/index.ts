@@ -1,3 +1,5 @@
+import { onDestroy } from 'svelte';
+
 export const exFuntion = () => {
   return '';
 };
@@ -27,4 +29,10 @@ export const secondsToTime = (secs: number): { [x: string]: number } => {
     s: seconds
   };
   return obj;
+};
+
+export const onInterval = (cb: () => void, timer: number) => {
+  const interval = setInterval(cb, timer);
+
+  onDestroy(() => clearInterval(interval));
 };
