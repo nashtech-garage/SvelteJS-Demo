@@ -13,16 +13,21 @@
   expected.setSeconds(expected.getSeconds() + countdown);
   let now = new Date().getTime();
   let distance = tweened(expected.getTime() - now);
-  let interval = setInterval(() => {
-    if ($distance > 0) {
-      $distance -= 1000;
-    } else if ($distance < 1) {
+  const handleInterval = () => {
+    return setInterval(() => {
+      if ($distance > 0) {
+        $distance -= 1000;
+      }
+    }, 1000);
+  };
+  let interval = handleInterval();
+  $: {
+    if ($distance < 1) {
+      clearInterval(interval);
       isReset = true;
       callback && callback();
-      clearInterval(interval);
     }
-  }, 1000);
-
+  }
   $: days = Math.floor($distance / (1000 * 60 * 60 * 24));
   $: hours = Math.floor(($distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
   $: minutes = Math.floor(($distance % (1000 * 60 * 60)) / (1000 * 60));
@@ -31,15 +36,7 @@
   const handleReset = () => {
     isReset = false;
     distance = tweened(expected.getTime() - now);
-    interval = setInterval(() => {
-      if ($distance > 0) {
-        $distance -= 1000;
-      } else if ($distance < 1) {
-        isReset = true;
-        callback && callback();
-        clearInterval(interval);
-      }
-    }, 1000);
+    interval = handleInterval();
   };
   onDestroy(() => {
     clearInterval(interval);
