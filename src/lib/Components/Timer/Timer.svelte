@@ -37,7 +37,6 @@
       } else if ($distance < 1) {
         clearInterval(interval);
         isReset = true;
-        callback && callback();
       }
     }, 1000);
   };
