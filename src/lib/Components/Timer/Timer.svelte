@@ -35,7 +35,7 @@
     clearInterval(interval);
   });
   $: {
-    if ($distance === 0) {
+    if ($distance < 1) {
       callback && callback();
       handleReset();
     }
