@@ -1,7 +1,7 @@
 <script>
   import GroupProducts from '../lib/Home/GroupProducts/GroupProducts.svelte';
   import FeaturedProducts from '../lib/Home/FeaturedProducts/FeaturedProducts.svelte';
-  import Categories from '../lib/Home/Categories/Categories.svelte';
+  import HomeBanner from '../lib/Home/Banner/Banner.svelte';
   import Banner from '../lib/Banner.svelte';
   import FlashSale from '../lib/Home/FlashSale/FlashSale.svelte';
   export let data;
@@ -18,6 +18,7 @@
 <FlashSale countdown="{1000}" callback="{() => console.log('done 4')}" />
 <FlashSale countdown="{10000}" callback="{() => console.log('done 5')}" />
 <FeaturedProducts />
+<HomeBanner />
 <GroupProducts />
 
 <style lang="scss">
