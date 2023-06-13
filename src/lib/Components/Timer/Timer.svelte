@@ -8,7 +8,6 @@
   };
   export let countdown: number = 5;
   export let callback = () => null;
-  let isReset = false;
   let expected = new Date();
   expected.setSeconds(expected.getSeconds() + countdown);
   let now = new Date().getTime();
@@ -16,10 +15,8 @@
   let interval = setInterval(() => {
     if ($distance > 0) {
       $distance -= 1000;
-    } else if ($distance < 1) {
+    } else {
       clearInterval(interval);
-      isReset = true;
-      callback && callback();
     }
   }, 1000);
 
@@ -29,20 +26,20 @@
   $: seconds = Math.floor(($distance % (1000 * 60)) / 1000);
 
   const handleReset = () => {
-    isReset = false;
+    expected = new Date();
+    expected.setSeconds(expected.getSeconds() + countdown + 1);
+    now = new Date().getTime();
     distance = tweened(expected.getTime() - now);
-    interval = setInterval(() => {
-      if ($distance > 0) {
-        $distance -= 1000;
-      } else if ($distance < 1) {
-        clearInterval(interval);
-        isReset = true;
-      }
-    }, 1000);
   };
   onDestroy(() => {
     clearInterval(interval);
   });
+  $: {
+    if ($distance === 0) {
+      callback && callback();
+      handleReset();
+    }
+  }
 </script>
 
 <div class="container">
@@ -52,9 +49,6 @@
     <Card number="{hours}" />:
     <Card number="{minutes}" />:
     <Card number="{seconds}" />
-    {#if isReset}
-      <button class="reset" on:click="{handleReset}">Reset</button>
-    {/if}
   </div>
 </div>
 <slot />
