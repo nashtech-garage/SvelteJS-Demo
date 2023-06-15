@@ -16,30 +16,25 @@
     if ($distance > 0) {
       $distance -= 1000;
     } else {
-      clearInterval(interval);
+      callback && callback();
+      handleReset();
     }
   }, 1000);
 
   $: days = Math.floor($distance / (1000 * 60 * 60 * 24));
-  $: hours = Math.floor(($distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  $: minutes = Math.floor(($distance % (1000 * 60 * 60)) / (1000 * 60));
-  $: seconds = Math.floor(($distance % (1000 * 60)) / 1000);
+  $: hours = $distance > 0 ? Math.floor(($distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)) : 0;
+  $: minutes = $distance > 0 ? Math.floor(($distance % (1000 * 60 * 60)) / (1000 * 60)) : 0;
+  $: seconds = $distance > 0 ? Math.floor(($distance % (1000 * 60)) / 1000) : 0;
 
   const handleReset = () => {
     expected = new Date();
-    expected.setSeconds(expected.getSeconds() + countdown + 1);
+    expected.setSeconds(expected.getSeconds() + countdown);
     now = new Date().getTime();
     distance = tweened(expected.getTime() - now);
   };
   onDestroy(() => {
     clearInterval(interval);
   });
-  $: {
-    if ($distance < 1) {
-      callback && callback();
-      handleReset();
-    }
-  }
 </script>
 
 <div class="container">
