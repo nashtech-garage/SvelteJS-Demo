@@ -5,7 +5,7 @@
   import '../legend/css/elegant-icons.css';
   import { fly } from 'svelte/transition';
 
-  let isOpen = false;
+  let isOpen = true;
 
   function toggleSlide() {
     isOpen = !isOpen;
