@@ -32,6 +32,7 @@
     now = new Date().getTime();
     distance = tweened(expected.getTime() - now);
   };
+  
   onDestroy(() => {
     clearInterval(interval);
   });
