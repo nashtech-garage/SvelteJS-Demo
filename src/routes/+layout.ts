@@ -1,8 +1,8 @@
-export const load = () => {
-  const user = {
-    name: 'hunter',
-    email: 'email@gmail.com'
-  };
+import Api from "../servies";
 
-  return user;
-};
+/** @type {import('./$types').PageLoad} */
+export const ssr = false;
+export const load = async () => {
+  const response = await Api.get("/api/rest/product/all_category?limit=20");
+  return { categoryList: response.category };
+}
