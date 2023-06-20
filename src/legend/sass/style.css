@@ -697,6 +697,7 @@ ol {
           align-items: center;
   padding-left: 75px;
   margin-top: -11px;
+  width: 100%;
 }
 
 .hero__text span {
