@@ -11,6 +11,6 @@
 <FlashSale countdown="{15}" callback="{() => console.log('done 3')}" />
 <FlashSale countdown="{1000}" callback="{() => console.log('done 4')}" />
 <FlashSale countdown="{10000}" callback="{() => console.log('done 5')}" /> -->
-<FeaturedProducts />
+<FeaturedProducts featuredProductList={data.featuredProductList}/>
 <HomeBanner />
 <GroupProducts />
