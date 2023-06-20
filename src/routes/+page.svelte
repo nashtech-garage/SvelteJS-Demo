@@ -1,6 +1,6 @@
 <script>
   import Banner from '../lib/Banner.svelte';
-  import Home from './home/home.svelte';
+  import Home from './home/+page.svelte';
   export let data;
 </script>
 
