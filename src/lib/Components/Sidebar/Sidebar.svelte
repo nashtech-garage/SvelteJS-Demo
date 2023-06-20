@@ -9,7 +9,6 @@
   }
 </script>
 
-
 <div class="hero__categories">
   <!-- svelte-ignore a11y-click-events-have-key-events -->
   <div class="hero__categories__all {isOpen ? 'slide-open' : ''}" on:click="{toggleSlide}">

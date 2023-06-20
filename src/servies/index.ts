@@ -5,17 +5,16 @@ const axiosAPI = axios.create({
 });
 
 const apiRequest = (method: string, url: string, request: any) => {
-  console.log('axiosAPI', axiosAPI);
-  
   const headers = {
     "content-type": "application/json",
     "x-hasura-admin-secret": PUBLIC_API_KEY
   };
+
   return axiosAPI({
-  method,
-  url,
-  data: request,
-  headers
+    method,
+    url,
+    data: request,
+    headers
   }).then(res => {
     return Promise.resolve(res.data);
   })

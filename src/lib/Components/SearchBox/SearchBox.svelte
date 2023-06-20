@@ -1,8 +1,3 @@
-<script>
-    
-</script>
-
-
 <div class="hero__search__form">
   <form action="#">
     <div class="hero__search__categories">
@@ -22,7 +17,3 @@
     <span>24/7 Support</span>
   </div>
 </div>
-
-<style>
-    /* your styles go here */
-</style>
