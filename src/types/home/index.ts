@@ -25,27 +25,27 @@ export type TFeaturedProductItem = {
 export enum ControlKeys {
   ALL = '*',
   ORANGES = 'oranges',
-  FRESH_MEAT = 'fresh-meat',
-  VEGETABLES = 'vegetables',
-  FAST_FOOD = 'fastfood'
+  FRESH_MEAT = 'Fresh Meat',
+  VEGETABLES = 'Vegetable',
+  FAST_FOOD = 'Ocean Foods'
 }
 
 export const FeaturedControls = {
   [ControlKeys.ALL]: 'All',
   [ControlKeys.ORANGES]: 'Oranges',
   [ControlKeys.FRESH_MEAT]: 'Fresh Meat',
-  [ControlKeys.VEGETABLES]: 'Vegetables',
-  [ControlKeys.FAST_FOOD]: 'Fastfood'
+  [ControlKeys.VEGETABLES]: 'Vegetable',
+  [ControlKeys.FAST_FOOD]: 'Ocean Foods'
 };
 
 export enum MixedTypesValues {
-  ORANGES_MIX_FRESH_MEAT = 'mix oranges fresh-meat',
-  VEGETABLES_MIX_FAST_FOOD = 'mix vegetables fastfood',
-  VEGETABLES_MIX_FRESH_MEAT = 'mix vegetables fresh-meat',
-  FAST_FOOD_MIX_ORANGES = 'mix fastfood oranges',
-  FRESH_MEAT_MIX_VEGETABLES = 'mix fresh-meat vegetables',
-  ORANGES_MIX_FAST_FOOD = 'mix oranges fastfood',
-  FAST_FOOD_MIX_VEGETABLES = 'mix fastfood vegetables'
+  ORANGES_MIX_FRESH_MEAT = 'Fresh Meat',
+  VEGETABLES_MIX_FAST_FOOD = 'mix Vegetable Ocean Foods',
+  VEGETABLES_MIX_FRESH_MEAT = 'mix Vegetable Fresh Meat',
+  FAST_FOOD_MIX_ORANGES = 'mix Ocean Foods oranges',
+  FRESH_MEAT_MIX_VEGETABLES = 'mix Fresh Meat Vegetable',
+  ORANGES_MIX_FAST_FOOD = 'mix oranges Ocean Foods',
+  FAST_FOOD_MIX_VEGETABLES = 'mix Ocean Foods Vegetable'
 }
 
 /**

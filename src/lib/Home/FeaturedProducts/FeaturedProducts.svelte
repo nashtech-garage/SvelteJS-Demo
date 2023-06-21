@@ -4,37 +4,31 @@
   import { fade, scale } from 'svelte/transition';
   import { type TFeaturedProductItem, ControlKeys } from '../../../types/home';
   import { featuredControls, mixedTypes } from '../../../constants/home';
-
-  const itemGenerator = (number: number = 0): TFeaturedProductItem[] => {
-    const newArray = new Array(number);
-    return [...newArray].map((_, index) => {
-      const order = index + 1;
-      return {
-        image: `./images/FeaturedProducts/feature-${order}.jpg`,
-        title: `${order}`,
-        price: 30,
-        mixedTypes: mixedTypes[index]
-      };
-    });
-  };
-
-  /**
-   * Variables
-   */
+  export let featuredProductList: any[] = [];
+  
+  const itemGenerator = (): TFeaturedProductItem[] => (
+    featuredProductList.map((item: any) => (
+       {
+        image: item.list_img[0].url,
+        title: item.name,
+        price: item.price,
+        mixedTypes: item && item .category ? item.category.name : mixedTypes[0]
+      })
+    ));
   let tab = ControlKeys.ALL;
-  let featuredProductList: TFeaturedProductItem[] = itemGenerator(8);
-  let filterState = featuredProductList;
+  let filterState = itemGenerator();
   const handleChangeTab = (selectedTab = ControlKeys.ALL): void => {
     tab = selectedTab;
   };
 
   $: {
     if (tab === ControlKeys.ALL) {
-      filterState = featuredProductList;
+      filterState = itemGenerator();
     } else {
-      filterState = featuredProductList.filter((item) => item.mixedTypes.indexOf(tab) > -1);
+      filterState = itemGenerator().filter((item) => item.mixedTypes.indexOf(tab) > -1);
     }
   }
+
 </script>
 
 <section class="featured spad">
@@ -61,7 +55,6 @@
       </div>
     </div>
     <div class="row featured__filter">
-      <!-- 8 items/products -->
       {#each filterState as item (item.title)}
         <div
           in:scale
