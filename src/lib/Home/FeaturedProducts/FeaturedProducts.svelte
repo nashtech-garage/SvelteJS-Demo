@@ -9,6 +9,7 @@
   const itemGenerator = (): TFeaturedProductItem[] => (
     featuredProductList.map((item: any) => (
        {
+        id: item.id,
         image: item.list_img[0].url,
         title: item.name,
         price: item.price,
