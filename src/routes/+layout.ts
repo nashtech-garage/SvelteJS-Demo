@@ -1,4 +1,4 @@
-import Api from "../servies";
+import Api from "../services";
 
 /** @type {import('./$types').PageLoad} */
 // export const ssr = false;
