@@ -1,6 +1,22 @@
 <script>
   export let itemData;
+  // export let addToCart;
+  export let wishlist;
   const { image, title, price, id } = itemData;
+
+  function handleAddToCart(id) {
+    const foundIdx = wishlist.findIndex(w => w.title === title)
+    if (foundIdx > -1) {
+      wishlist[foundIdx].quantity++
+    } else {
+      wishlist.push({
+        id,
+        quantity: 1,
+      })
+    }
+    wishlist = wishlist;
+    localStorage.setItem('wishlist', JSON.stringify(wishlist))
+  }
 </script>
 
 <div class="featured__item">
@@ -12,7 +28,11 @@
     <ul class="featured__item__pic__hover">
       <li><a href="/"><i class="fa fa-heart"></i></a></li>
       <li><a href="/"><i class="fa fa-retweet"></i></a></li>
-      <li><a href="/"><i class="fa fa-shopping-cart"></i></a></li>
+      <li 
+        
+      >
+        <a href="/" on:click={() => handleAddToCart(title)}><i class="fa fa-shopping-cart"></i></a>
+    </li>
     </ul>
   </div>
   <div class="featured__item__text">

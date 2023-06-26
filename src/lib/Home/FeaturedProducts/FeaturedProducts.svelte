@@ -30,6 +30,9 @@
     }
   }
 
+  $: wishlist = [];
+
+  
 </script>
 
 <section class="featured spad">
@@ -63,7 +66,10 @@
           animate:flip="{{ duration: 500 }}"
           class="col-lg-3 col-md-4 col-sm-6"
         >
-          <FeaturedProductItem itemData="{item}" />
+        <FeaturedProductItem 
+          itemData={item}
+          wishlist={wishlist}
+        />
         </div>
       {/each}
     </div>
