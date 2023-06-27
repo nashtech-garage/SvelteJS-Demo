@@ -1,7 +1,6 @@
 <script lang="ts">
+  import Content from '../../lib/Blogs/Content/BlogContent.svelte';
+  export let data;
 </script>
 
-<h1>Blog content</h1>
-
-<style lang="scss">
-</style>
+<Content list="{data.blogList}" />
