@@ -1,5 +1,6 @@
 <script lang="ts">
   /** @type {import('./$types').LayoutData} */
+  import { page } from '$app/stores';
   import '../legend/sass/style.css';
   import '../legend/css/bootstrap.min.css';
   import '../legend/css/font-awesome.min.css';
@@ -9,7 +10,10 @@
   import Sidebar from '../lib/Components/Sidebar/Sidebar.svelte';
   import SearchBox from '../lib/Components/SearchBox/SearchBox.svelte';
   import Herobanner from '../lib/Components/Herobanner/Herobanner.svelte';
+  import Breadcrumb from '../lib/Components/Breadcrumb/+Breadcrumb.svelte';
+  import { PATH_VALUES } from '../constants/paths';
   export let data: any = [];
+  $: pathname = $page.url.pathname || '/';
 </script>
 
 <Header />
@@ -27,7 +31,9 @@
       </div>
     </div>
   </div>
+  <Breadcrumb title="{PATH_VALUES[pathname]}" />
 </section>
+
 <div class="container">
   <slot />
 </div>

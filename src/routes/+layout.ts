@@ -1,8 +1,8 @@
-import Api from "../servies";
+import Api from '../servies';
 
 /** @type {import('./$types').PageLoad} */
 // export const ssr = false;
 export const load = async () => {
-  const response = await Api.get("/api/rest/product/all_category?limit=20");
+  const response = await Api.get('/api/rest/product/all_category?limit=20');
   return { categoryList: response.category };
-}
+};
