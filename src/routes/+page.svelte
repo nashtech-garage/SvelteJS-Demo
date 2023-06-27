@@ -3,7 +3,7 @@
   export let data;
 </script>
 
-<Home featuredProductList={data.featuredProductList}/>
+<Home featuredProductList={data.featuredProductList} lastedProduct={data.lastedProduct} topRateProduct={data.topRateProduct} reviewedProduct={data.reviewedProduct}/>
 
 <style lang="scss">
   h1 {

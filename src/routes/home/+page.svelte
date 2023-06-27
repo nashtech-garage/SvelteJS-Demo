@@ -4,6 +4,10 @@
   import HomeBanner from '../../lib/Home/Banner/Banner.svelte';
   import FlashSale from '../../lib/Home/FlashSale/FlashSale.svelte';
   export let featuredProductList: any[] = [];
+  export let lastedProduct: any[] = [];
+  export let topRateProduct: any[] = [];
+  export let reviewedProduct: any[] = [];
+
 </script>
 
 <FlashSale countdown="{5}" callback="{() => console.log('done 1')}" />
@@ -13,7 +17,7 @@
 <FlashSale countdown="{10000}" callback="{() => console.log('done 5')}" /> -->
 <FeaturedProducts featuredProductList={featuredProductList} />
 <HomeBanner />
-<GroupProducts />
+<GroupProducts lastedProduct={lastedProduct} topRateProduct={topRateProduct} reviewedProduct={reviewedProduct}/>
 
 <style lang="scss">
 </style>
