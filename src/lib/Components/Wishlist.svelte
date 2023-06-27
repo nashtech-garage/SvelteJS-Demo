@@ -5,17 +5,16 @@
   import type { TFeaturedProductItem, TWishlistStorage } from '../../types/home';
 	
 	export let wishlist: TWishlistStorage[] & TFeaturedProductItem[];
-	$: modifiedWishlist = [...wishlist] || [];
-	function increment(id: string) {
+	$: modifiedWishlist = wishlist ? [...wishlist] : [];
+	function increment(id: Number) {
 		const foundIdx = modifiedWishlist.findIndex(item => item.id === id);
 		if (foundIdx > -1) {
 			modifiedWishlist[foundIdx].quantity++
 			localStorage.setItem('wishlist', JSON.stringify(modifiedWishlist))
-	
 		}
 	}
 	
-	function decrement(id: string) {
+	function decrement(id: Number) {
 		const foundIdx = modifiedWishlist.findIndex(item => item.id === id);
 		if (foundIdx > -1) {
 			modifiedWishlist[foundIdx].quantity = modifiedWishlist[foundIdx].quantity 
@@ -25,7 +24,7 @@
 		}
 	}
 	
-	function remove(id: string) {
+	function remove(id: Number) {
 		modifiedWishlist = modifiedWishlist.filter(w => w.id !== id);
 		localStorage.setItem('wishlist', JSON.stringify(modifiedWishlist))
 	}

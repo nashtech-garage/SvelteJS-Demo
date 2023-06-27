@@ -6,19 +6,17 @@
   import { fade, scale } from 'svelte/transition';
   import { type TFeaturedProductItem, ControlKeys } from '../../../types/home';
   import { featuredControls, mixedTypes } from '../../../constants/home';
-  import { getWishlist } from '../../../utils';
+  import { getWishlist, handleAddToCart } from '../../../utils';
   export let featuredProductList: any[] = [];
-  
-  const itemGenerator = (): TFeaturedProductItem[] => (
-    featuredProductList.map((item: any) => (
-       {
-        id: item.id,
-        image: item.list_img[0].url,
-        title: item.name,
-        price: item.price,
-        mixedTypes: item && item .category ? item.category.name : mixedTypes[0]
-      })
-    ));
+
+  const itemGenerator = (): TFeaturedProductItem[] =>
+    featuredProductList.map((item: any) => ({
+      id: item.id,
+      image: item.list_img[0].url,
+      title: item.name,
+      price: item.price,
+      mixedTypes: item && item.category ? item.category.name : mixedTypes[0]
+    }));
   let tab = ControlKeys.ALL;
   let filterState = itemGenerator();
   const handleChangeTab = (selectedTab = ControlKeys.ALL): void => {
@@ -37,6 +35,10 @@
   onMount(() => {
     wishlist = getWishlist();
   });
+
+  function handleCartUpdate(item: TFeaturedProductItem) {
+    wishlist = handleAddToCart(wishlist, item);
+  }
 </script>
 
 <section class="featured spad">
@@ -70,10 +72,10 @@
           animate:flip="{{ duration: 500 }}"
           class="col-lg-3 col-md-4 col-sm-6"
         >
-        <FeaturedProductItem 
-          itemData={item}
-          wishlist={wishlist}
-        />
+          <FeaturedProductItem
+            itemData="{item}"
+            handleCartUpdate="{handleCartUpdate}"
+          />
         </div>
       {/each}
     </div>

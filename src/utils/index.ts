@@ -32,6 +32,7 @@ export function handleAddToCart(wishlist: TWishlistStorage[], newItem: TFeatured
     }
   }
   localStorage.setItem('wishlist', JSON.stringify(newWishlist));
+  return newWishlist;
 }
 
 export function formatNumber(number: any) {
