@@ -1,22 +1,11 @@
-<script>
-  export let itemData;
-  // export let addToCart;
-  export let wishlist;
+<script lang="ts">
+  import type { TWishlistStorage, TFeaturedProductItem } from '../../../../types/home';
+  import { handleAddToCart } from "../../../../utils";
+
+  export let itemData: TFeaturedProductItem;
+  export let wishlist: TWishlistStorage[];
   const { image, title, price, id } = itemData;
 
-  function handleAddToCart(id) {
-    const foundIdx = wishlist.findIndex(w => w.title === title)
-    if (foundIdx > -1) {
-      wishlist[foundIdx].quantity++
-    } else {
-      wishlist.push({
-        id,
-        quantity: 1,
-      })
-    }
-    wishlist = wishlist;
-    localStorage.setItem('wishlist', JSON.stringify(wishlist))
-  }
 </script>
 
 <div class="featured__item">
@@ -28,10 +17,8 @@
     <ul class="featured__item__pic__hover">
       <li><a href="/"><i class="fa fa-heart"></i></a></li>
       <li><a href="/"><i class="fa fa-retweet"></i></a></li>
-      <li 
-        
-      >
-        <a href="/" on:click={() => handleAddToCart(title)}><i class="fa fa-shopping-cart"></i></a>
+      <li>
+        <a href="/" on:click={() => handleAddToCart(wishlist, itemData)}><i class="fa fa-shopping-cart"></i></a>
     </li>
     </ul>
   </div>

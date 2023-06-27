@@ -6,7 +6,7 @@
   export let featuredProductList: any[] = [];
 </script>
 
-<FlashSale countdown="{5}" callback="{() => console.log('done 1')}" />
+<FlashSale countdown="{5}" callback="{() => {}}" />
 <!-- <FlashSale countdown="{10}" callback="{() => console.log('done 2')}" />
 <FlashSale countdown="{15}" callback="{() => console.log('done 3')}" />
 <FlashSale countdown="{1000}" callback="{() => console.log('done 4')}" />

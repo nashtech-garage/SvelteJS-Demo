@@ -1,10 +1,13 @@
 <script>
+   import { onMount } from 'svelte';
+  import { getWishlist } from "../utils";
+
   import CartIcon from './Components/CartIcon/CartIcon.svelte';
-  const Icons = [
+  $: Icons = [
     {
-      href: '#',
+      href: '/shopping-cart/',
       iconName: 'fa fa-heart',
-      numberOfNoti: 1
+      itemQuantity: '' || 0,
     },
     {
       href: '#',
@@ -12,6 +15,15 @@
       numberOfNoti: 3
     }
   ];
+
+  $: itemQuantity = 0;
+
+  onMount(() => {
+    const wishlist = getWishlist();
+    itemQuantity = wishlist && wishlist.length ? wishlist.length : '';
+    Icons[0].itemQuantity = !itemQuantity ? null : itemQuantity;
+    Icons = Icons;
+  });
 </script>
 
 <header class="header">

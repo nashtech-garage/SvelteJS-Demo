@@ -2,12 +2,12 @@
 
 	import { Col, Row } from 'sveltestrap';
 	import { Table } from 'sveltestrap';
-  import type { TFeaturedProductItem, TWishlistStorage } from '../types/home';
+  import type { TFeaturedProductItem, TWishlistStorage } from '../../types/home';
 	
 	export let wishlist: TWishlistStorage[] & TFeaturedProductItem[];
 	$: modifiedWishlist = [...wishlist];
-	function increment(title: string) {
-		const foundIdx = modifiedWishlist.findIndex(item => item.title === title);
+	function increment(id: string) {
+		const foundIdx = modifiedWishlist.findIndex(item => item.id === id);
 		if (foundIdx > -1) {
 			modifiedWishlist[foundIdx].quantity++
 			localStorage.setItem('wishlist', JSON.stringify(modifiedWishlist))
@@ -15,19 +15,18 @@
 		}
 	}
 	
-	function decrement(title: string) {
-		const foundIdx = modifiedWishlist.findIndex(item => item.title === title);
+	function decrement(id: string) {
+		const foundIdx = modifiedWishlist.findIndex(item => item.id === id);
 		if (foundIdx > -1) {
 			modifiedWishlist[foundIdx].quantity = modifiedWishlist[foundIdx].quantity 
 			? modifiedWishlist[foundIdx].quantity - 1 
 			: 0
 			localStorage.setItem('wishlist', JSON.stringify(modifiedWishlist))
-	
 		}
 	}
 	
-	function remove(title: string) {
-		modifiedWishlist = modifiedWishlist.filter(w => w.title !== title);
+	function remove(id: string) {
+		modifiedWishlist = modifiedWishlist.filter(w => w.id !== id);
 		localStorage.setItem('wishlist', JSON.stringify(modifiedWishlist))
 	}
 	
@@ -62,9 +61,9 @@
 									<td class="shoping__cart__quantity">
 											<div class="quantity">
 													<div class="pro-qty">
-														<span on:click={() => decrement(item.title)} class="dec qtybtn">-</span>
+														<span on:click={() => decrement(item.id)} class="dec qtybtn">-</span>
 														<input type="text" value={item.quantity}>
-														<span on:click={() => increment(item.title)} class="inc qtybtn">+</span>
+														<span on:click={() => increment(item.id)} class="inc qtybtn">+</span>
 	
 													</div>
 											</div>
@@ -73,7 +72,7 @@
 											${item.price * item.quantity}
 									</td>
 									<td class="shoping__cart__item__close">
-											<span on:click={() => remove(item.title)} class="icon_close"></span>
+											<span on:click={() => remove(item.id)} class="icon_close"></span>
 									</td>
 							</tr>
 								{/each}

@@ -1,9 +1,12 @@
 <script lang="ts">
+  import { onMount } from 'svelte';
+
   import FeaturedProductItem from './ProductItem/ProductItem.svelte';
   import { flip } from 'svelte/animate';
   import { fade, scale } from 'svelte/transition';
   import { type TFeaturedProductItem, ControlKeys } from '../../../types/home';
   import { featuredControls, mixedTypes } from '../../../constants/home';
+  import { getWishlist } from '../../../utils';
   export let featuredProductList: any[] = [];
   
   const itemGenerator = (): TFeaturedProductItem[] => (
@@ -31,8 +34,9 @@
   }
 
   $: wishlist = [];
-
-  
+  onMount(() => {
+    wishlist = getWishlist();
+  });
 </script>
 
 <section class="featured spad">
