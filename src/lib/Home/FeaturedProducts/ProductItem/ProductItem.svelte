@@ -1,6 +1,6 @@
 <script>
   export let itemData;
-  let { image, title, price } = itemData;
+  const { image, title, price, id } = itemData;
 </script>
 
 <div class="featured__item">
@@ -16,7 +16,7 @@
     </ul>
   </div>
   <div class="featured__item__text">
-    <h6><a href="/">{title}</a></h6>
+    <h6><a href={"/product-detail/" + id}>{title}</a></h6>
     <h5>${price}</h5>
   </div>
 </div>
