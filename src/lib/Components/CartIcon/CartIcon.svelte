@@ -8,7 +8,7 @@
   export let className = '';
   export let href = '#';
   export let iconName = '';
-  export let itemQuantity = '' || 0;
+  export let itemQuantity = 0;
 </script>
 
 <a href="{href}"><i class="{`${iconName} ${className}`}"></i> <span>{itemQuantity}</span></a>

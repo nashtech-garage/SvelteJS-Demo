@@ -19,12 +19,27 @@ export function getWishlist() {
 }
 
 export function handleAddToCart(wishlist: TWishlistStorage[], newItem: TFeaturedProductItem) {
-  const foundIdx = wishlist.findIndex((w: TWishlistStorage) => w.id === newItem.id);
-  if (foundIdx > -1) {
-    wishlist[foundIdx].quantity++
+  let newWishlist: TWishlistStorage[] = [];
+  if (!(wishlist && wishlist.length)) {
+    newWishlist.push({...newItem, quantity: 1 })
   } else {
-    wishlist.push( {...newItem, quantity: 0 })
+    newWishlist = [...wishlist];
+    const foundIdx = wishlist.findIndex((w: TWishlistStorage) => w.id === newItem.id);
+    if (foundIdx > -1) {
+      newWishlist[foundIdx].quantity++
+    } else {
+      newWishlist.push( {...newItem, quantity: 1 })
+    }
   }
-  wishlist = wishlist;
-  localStorage.setItem('wishlist', JSON.stringify(wishlist));
+  localStorage.setItem('wishlist', JSON.stringify(newWishlist));
+}
+
+export function formatNumber(number: any) {
+  return new Intl.NumberFormat(
+    'en-US', 
+    { 
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2 
+    })
+    .format(number);
 }

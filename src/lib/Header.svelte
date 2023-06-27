@@ -7,21 +7,22 @@
     {
       href: '/shopping-cart/',
       iconName: 'fa fa-heart',
-      itemQuantity: '' || 0,
+      itemQuantity: 0,
     },
     {
-      href: '#',
+      href: '/shopping-cart/',
       iconName: 'fa fa-shopping-bag',
-      numberOfNoti: 3
+      itemQuantity: 0
     }
   ];
 
-  $: itemQuantity = 0;
+  // $: itemQuantity = 0;
 
   onMount(() => {
     const wishlist = getWishlist();
-    itemQuantity = wishlist && wishlist.length ? wishlist.length : '';
-    Icons[0].itemQuantity = !itemQuantity ? null : itemQuantity;
+    Icons[0].itemQuantity = wishlist && wishlist.length ? wishlist.length : 0;
+    Icons[1].itemQuantity = wishlist && wishlist.length ? wishlist.length : 0;
+
     Icons = Icons;
   });
 </script>
@@ -82,7 +83,7 @@
               <a href="/">Pages</a>
               <ul class="header__menu__dropdown">
                 <li><a href="/shop-details">Shop Details</a></li>
-                <li><a href="/shoping-cart">Shoping Cart</a></li>
+                <li><a href="/shopping-cart">Shoping Cart</a></li>
                 <li><a href="/checkout">Check Out</a></li>
                 <li><a href="/blog-details">Blog Details</a></li>
               </ul>

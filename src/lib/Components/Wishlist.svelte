@@ -1,11 +1,11 @@
 <script lang="ts">
-
+	import { formatNumber } from '../../utils';
 	import { Col, Row } from 'sveltestrap';
 	import { Table } from 'sveltestrap';
   import type { TFeaturedProductItem, TWishlistStorage } from '../../types/home';
 	
 	export let wishlist: TWishlistStorage[] & TFeaturedProductItem[];
-	$: modifiedWishlist = [...wishlist];
+	$: modifiedWishlist = [...wishlist] || [];
 	function increment(id: string) {
 		const foundIdx = modifiedWishlist.findIndex(item => item.id === id);
 		if (foundIdx > -1) {
@@ -69,7 +69,7 @@
 											</div>
 									</td>
 									<td class="shoping__cart__total">
-											${item.price * item.quantity}
+											${formatNumber(item.price * item.quantity)}
 									</td>
 									<td class="shoping__cart__item__close">
 											<span on:click={() => remove(item.id)} class="icon_close"></span>
@@ -87,8 +87,8 @@
 	<style lang="scss">
 	/* Shop Cart */
 	.shoping-cart {
-		padding-top: 80px;
-		padding-bottom: 80px;
+		padding-top: 0;
+		padding-bottom: 10px;
 	}
 	
 	.shoping__cart__table {
