@@ -1,4 +1,4 @@
-import Api from '../../../servies/productServices';
+import Api from '../../../services/blogServices';
 
 /** @type {import('./$types').PageLoad} */
 export const load = async ({ params }: any) => {
