@@ -1,17 +1,30 @@
 <script>
+   import { onMount } from 'svelte';
+  import { getWishlist } from "../utils";
+
   import CartIcon from './Components/CartIcon/CartIcon.svelte';
-  const Icons = [
+  $: Icons = [
     {
-      href: '#',
+      href: '/shopping-cart/',
       iconName: 'fa fa-heart',
-      numberOfNoti: 1
+      itemQuantity: 0,
     },
     {
-      href: '#',
+      href: '/shopping-cart/',
       iconName: 'fa fa-shopping-bag',
-      numberOfNoti: 3
+      itemQuantity: 0
     }
   ];
+
+  // $: itemQuantity = 0;
+
+  onMount(() => {
+    const wishlist = getWishlist();
+    Icons[0].itemQuantity = wishlist && wishlist.length ? wishlist.length : 0;
+    Icons[1].itemQuantity = wishlist && wishlist.length ? wishlist.length : 0;
+
+    Icons = Icons;
+  });
 </script>
 
 <header class="header">
@@ -70,7 +83,7 @@
               <a href="/">Pages</a>
               <ul class="header__menu__dropdown">
                 <li><a href="/shop-details">Shop Details</a></li>
-                <li><a href="/shoping-cart">Shoping Cart</a></li>
+                <li><a href="/shopping-cart">Shoping Cart</a></li>
                 <li><a href="/checkout">Check Out</a></li>
                 <li><a href="/blog-details">Blog Details</a></li>
               </ul>

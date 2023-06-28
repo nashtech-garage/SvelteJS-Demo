@@ -3,15 +3,15 @@
     href: string;
     iconName: string;
     className?: string;
-    numberOfNoti: number;
+    itemQuantity: number;
   };
   export let className = '';
   export let href = '#';
   export let iconName = '';
-  export let numberOfNoti = 0;
+  export let itemQuantity = 0;
 </script>
 
-<a href="{href}"><i class="{`${iconName} ${className}`}"></i> <span>{numberOfNoti}</span></a>
+<a href="{href}"><i class="{`${iconName} ${className}`}"></i> <span>{itemQuantity}</span></a>
 
 <style lang="scss">
   a {

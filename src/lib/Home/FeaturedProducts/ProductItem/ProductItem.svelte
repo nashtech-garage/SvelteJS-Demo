@@ -1,5 +1,8 @@
-<script>
-  export let itemData;
+<script lang="ts">
+  import type { TWishlistStorage, TFeaturedProductItem } from '../../../../types/home';
+  export let itemData: TFeaturedProductItem;
+  export let handleCartUpdate: Function;
+
   const { image, title, price, id } = itemData;
 </script>
 
@@ -12,11 +15,15 @@
     <ul class="featured__item__pic__hover">
       <li><a href="/"><i class="fa fa-heart"></i></a></li>
       <li><a href="/"><i class="fa fa-retweet"></i></a></li>
-      <li><a href="/"><i class="fa fa-shopping-cart"></i></a></li>
+      <li>
+        <a href="/" on:click="{() => handleCartUpdate(itemData)}"
+          ><i class="fa fa-shopping-cart"></i></a
+        >
+      </li>
     </ul>
   </div>
   <div class="featured__item__text">
-    <h6><a href={"/product-detail/" + id}>{title}</a></h6>
+    <h6><a href="{'/product-detail/' + id}">{title}</a></h6>
     <h5>${price}</h5>
   </div>
 </div>

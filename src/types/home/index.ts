@@ -20,6 +20,8 @@ export type TFeaturedProductItem = {
   title: string;
   price: number;
   mixedTypes: string;
+  id: Number,
+ 
 };
 
 export enum ControlKeys {
@@ -58,3 +60,7 @@ export enum GroupProductValues {
 }
 
 export type TGroupProductItem = Omit<TFeaturedProductItem, 'mixedTypes'>;
+
+export type TWishlistStorage = {
+   quantity: number
+} & TFeaturedProductItem;
